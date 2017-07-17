@@ -13,7 +13,6 @@ import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.BasicConfigurator;
 
 import org.quartz.JobDetail;
 
