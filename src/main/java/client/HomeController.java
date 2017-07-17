@@ -12,6 +12,9 @@ import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.*;
 import static org.quartz.TriggerBuilder.*;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+
 import org.quartz.JobDetail;
 
 import static org.quartz.SimpleScheduleBuilder.*;
@@ -20,6 +23,8 @@ import com.caucho.hessian.client.HessianProxyFactory;
 
 @Controller
 public class HomeController {
+	
+	static Logger logger = Logger.getLogger(HomeController.class);
 	
 	boolean firstRun = true;
 	
@@ -56,6 +61,8 @@ public class HomeController {
 	@RequestMapping(value = "/index", method = RequestMethod.POST, params = "send")
 	public String doRegister(Model model, @ModelAttribute("user") User user) {
 		
+		logger.info("Entering doRegister");
+		
 			for(int f = 9; f != 0; f--)
 			{
 				
@@ -70,12 +77,16 @@ public class HomeController {
 		  	for(int f = 0; f < 10; f++) {
 		  		model.addAttribute("history" + f, history[f]);
 		  	}
+		  	
+		  	logger.info("Exiting doRegister");
 		  
 		  	return "/WEB-INF/jsp/welcome.jsp";
 	  }
 	
   @RequestMapping("/index")
   public String welcome(Model model) throws Exception {
+	  
+	  logger.info("Entering welcome");
 	  
 	  if(firstRun) {
 		  
@@ -96,6 +107,8 @@ public class HomeController {
 	  	for(int f = 0; f < 10; f++) {
 	  		model.addAttribute("history" + f, history[f]);
 	  	}
+	  	
+	  	logger.info("Exiting welcome");
 	  	
       return "/WEB-INF/jsp/welcome.jsp";
       
